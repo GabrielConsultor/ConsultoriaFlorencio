@@ -40,37 +40,53 @@
     position: sticky;
     top: 0;
     z-index: 100;
-    padding: 15px 0;
+    padding: 8px 0;
   }
   
   .header-container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
+  display: flex;
+  justify-content: space-between; 
+  align-items: center;
+  width: 100%;
+  padding: 0; 
+}
   
-  .logo {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-  }
-  
-  .logo-text {
-    font-weight: 700;
-    font-size: 1.5rem;
-    background: linear-gradient(105deg, var(--primary-light) 0%, var(--primary) 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+  /* Logo com imagem */
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.logo-image {
+  height: 70px; /* Ajuste conforme necessário */
+  width: auto;
+  transition: transform 0.3s ease;
+}
+
+.logo-image:hover {
+  transform: scale(1.05);
+}
+
+.logo-subtext {
+  font-size: 0.9rem;
+  color: var(--text-light);
+  margin-left: 10px;
+  font-weight: normal;
+}
+
+/* Para dispositivos móveis */
+@media (max-width: 768px) {
+  .logo-image {
+    height: 40px;
   }
   
   .logo-subtext {
-    font-size: 0.9rem;
-    color: var(--text-light);
-    margin-left: 10px;
-    font-weight: normal;
+    font-size: 0.8rem;
+    margin-left: 5px;
   }
-  
+}
+
   nav ul {
     display: flex;
     list-style: none;
@@ -531,10 +547,19 @@
   }
   /* Menu hamburguer */
 .menu-toggle {
-  display: none;
-  font-size: 2rem;
+  display: none; /* Será exibido apenas em mobile */
   cursor: pointer;
   color: var(--primary);
+  font-size: 1.8rem;
+  padding: 5px;
+  transition: all 0.3s ease;
+  border-radius: 4px;
+  width: 40px;
+  height: 40px;
+  text-align: center;
+  line-height: 30px;
+  order: -1; 
+  margin-right: 15px;
 }
 
 @media (max-width: 768px) {
@@ -565,7 +590,7 @@
   }
   
   nav {
-    display: none;
+    display: flex;
     width: 100%;
     background: white;
     position: absolute;
@@ -582,7 +607,11 @@
   nav ul {
     flex-direction: column;
     align-items: center;
-    gap: 20px;
+    gap: 30px;
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
   }
 
   nav.show {
@@ -595,6 +624,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    order: -1;
   }
   
   .logo {
@@ -604,6 +634,11 @@
   .logo-text {
     font-size: 1.3rem;
   }
+  .logo-image {
+  height: 50px;
+  width: auto;
+  transition: transform 0.3s ease;
+}
   
   .logo-subtext {
     font-size: 0.8rem;

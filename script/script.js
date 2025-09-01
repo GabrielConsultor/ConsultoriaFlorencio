@@ -1,7 +1,15 @@
-// MENU HAMBURGUER 
-const menuToggle = document.getElementById('menu-toggle');
-const navbar = document.getElementById('navbar');
+// Menu Hamburguer
+document.getElementById('menu-toggle').addEventListener('click', function() {
+  const nav = document.getElementById('navbar');
+  nav.classList.toggle('show');
+});
 
+// Fechar o menu ao clicar em um link (opcional)
+document.querySelectorAll('nav a').forEach(link => {
+  link.addEventListener('click', () => {
+    document.getElementById('navbar').classList.remove('show');
+  });
+}); 
 // Fechar menu ao clicar fora dele
 document.addEventListener('click', (e) => {
   if (!navbar.contains(e.target) && !menuToggle.contains(e.target) && navbar.classList.contains('show')) {
@@ -21,13 +29,12 @@ document.querySelectorAll('nav a').forEach(link => {
   });
 });
 
-// FORMULÁRIO
+// FORMULÁRIO - NETLIFY FORMS
 document.getElementById('contactForm').addEventListener('submit', function(e) {
-  e.preventDefault();
   
+  // Mostra a mensagem de sucesso
   document.getElementById('formMessage').style.display = 'block';
   
   this.style.display = 'none';
   
-  this.submit();
 });

@@ -16,16 +16,15 @@
 
 <header>
   <div class="container header-container">
-    <div class="logo">
-      <div>
-        <span class="logo-text">Gabriel Florencio</span>
-        <span class="logo-subtext">Consultoria em Planos de Saúde</span>
-      </div>
-    </div>
-
-    <!-- Botão hamburguer -->
     <div class="menu-toggle" id="menu-toggle">
       <span>☰</span>
+    </div>
+
+    <div class="logo">
+      <div>
+        <img src="imgs/logo.png" alt="Gabriel Florencio Consultoria" class="logo-image">
+        <span class="logo-subtext">Consultoria em Planos de Saúde</span>
+      </div>
     </div>
 
     <nav id="navbar">
@@ -54,23 +53,44 @@
       </div>
       
       <div class="hero-form">
-        <h3 class="form-title">Solicite uma consultoria gratuita</h3>
-        <form id="contactForm" action="https://formsubmit.co/85da10d1a642c28f44b59aee1064accf" method="POST">
-          <div class="form-group">
-            <input type="text" class="form-input" name="name" placeholder="Seu nome completo" required>
-          </div>
-          <div class="form-group">
-            <input type="tel" class="form-input" name="phone" placeholder="Seu telefone com DDD" required>
-          </div>
-          <div class="form-group">
-            <input type="email" class="form-input" name="email" placeholder="Seu e-mail" required>
-          </div>
-          <button type="submit" class="form-button" style="background-color: white; color: var(--primary);;">Solicitar Contato</button>
-        </form>
-        <div id="formMessage" style="display: none; margin-top: 20px; padding: 15px; background: rgba(255,255,255,0.2); border-radius: 6px; text-align: center;">
-          <p style="color: white; margin: 0;">Obrigado! Entraremos em contato em breve.</p>
-        </div>
-      </div>
+  <h3 class="form-title">Solicite uma consultoria gratuita</h3>
+  
+  <form 
+    id="contactForm" 
+    name="contact" 
+    method="POST" 
+    netlify 
+    netlify-honeypot="bot-field"
+  >
+    
+    <input type="hidden" name="form-name" value="contact">
+    
+   
+    <p style="display: none;">
+      <label>Não preencha este campo: <input name="bot-field"></label>
+    </p>
+
+    <div class="form-group">
+      <input type="text" class="form-input" name="name" placeholder="Seu nome completo" required>
+    </div>
+    
+    <div class="form-group">
+      <input type="tel" class="form-input" name="phone" placeholder="Seu telefone com DDD" required>
+    </div>
+    
+    <div class="form-group">
+      <input type="email" class="form-input" name="email" placeholder="Seu e-mail" required>
+    </div>
+    
+    <button type="submit" class="form-button" style="background-color: white; color: var(--primary);">
+      Solicitar Contato
+    </button>
+  </form>
+  
+  <div id="formMessage" style="display: none; margin-top: 20px; padding: 15px; background: rgba(255,255,255,0.2); border-radius: 6px; text-align: center;">
+    <p style="color: white; margin: 0;">Obrigado! Entraremos em contato em breve.</p>
+  </div>
+</div>
     </div>
   </div>
 </section>
