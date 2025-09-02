@@ -33,8 +33,12 @@ document.querySelectorAll('nav a').forEach(link => {
 document.getElementById('contactForm').addEventListener('submit', function(e) {
   
   // Mostra a mensagem de sucesso
-  document.getElementById('formMessage').style.display = 'block';
-  
-  this.style.display = 'none';
+ function showThankYouMessage() {
+    const message = document.getElementById('formMessage');
+    message.classList.add('show');
+    setTimeout(() => {
+      message.classList.remove('show');
+    }, 3000);
+  } 
   
 });
