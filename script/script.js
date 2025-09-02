@@ -33,12 +33,31 @@ document.querySelectorAll('nav a').forEach(link => {
 document.getElementById('contactForm').addEventListener('submit', function(e) {
   
   // Mostra a mensagem de sucesso
- function showThankYouMessage() {
-    const message = document.getElementById('formMessage');
-    message.classList.add('show');
-    setTimeout(() => {
-      message.classList.remove('show');
-    }, 3000);
-  } 
-  
+const form = document.getElementById('contactForm');
+  const message = document.getElementById('formMessage');
+
+  form.addEventListener('submit', function(e) {
+    e.preventDefault(); // impede o redirecionamento padrão
+
+    const formData = new FormData(form);
+
+    fetch("/", {
+      method: "POST",
+      body: formData
+    })
+    .then(() => {
+      // Mostra a mensagem
+      message.style.display = "block";
+
+      // Limpa os campos do formulário
+      form.reset();
+      
+      setTimeout(() => {
+        message.style.display = "none";
+      }, 3000);
+    })
+    .catch(() => {
+      alert("❌ Ocorreu um erro. Tente novamente.");
+    });
+  });
 });
