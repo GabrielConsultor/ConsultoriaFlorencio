@@ -11,19 +11,18 @@
   <meta name="keywords" content="planos de saúde, consultoria, Jundiaí, cotação, Amil, Bradesco, Unimed, SulAmérica, Sobam, planos baratos, planos com desconto, plano para empresa, Notre Dame">
 
 <link rel="stylesheet" href="css/styles.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
 
 <header>
   <div class="container header-container">
-    <div class="menu-toggle" id="menu-toggle">
-      <span>☰</span>
-    </div>
+    
 
     <div class="logo">
       <div>
         <img src="imgs/logo.png" alt="Gabriel Florencio Consultoria" class="logo-image">
-        <span class="logo-subtext">Consultoria em Planos de Saúde</span>
+       
       </div>
     </div>
 
@@ -39,7 +38,23 @@
 
 
 <main>
- <section class="hero">
+  <div class="hamburguer-flutuante" id="hamburguer-flutuante">
+    <span></span>
+    <span></span>
+    <span></span>
+</div>
+
+<!-- Menu mobile -->
+<nav class="menu-mobile" id="menu-mobile">
+    <a href="#planos">Planos</a>
+    <a href="#vantagens">Vantagens</a>
+    <a href="#cotacao">Contato</a>
+</nav>
+
+<!-- Overlay para fechar o menu -->
+<div class="overlay" id="overlay"></div>
+
+<section class="hero">
   <div class="container">
     <div class="hero-container">
       <div class="hero-content">
@@ -86,10 +101,15 @@
       Solicitar Contato
     </button>
   </form>
-  
-  <div id="formMessage" style="display: none; margin-top: 20px; padding: 15px; background: rgba(255,255,255,0.2); border-radius: 6px; text-align: center;">
-    <p style="color: white; margin: 0;">Obrigado! Entraremos em contato em breve.</p>
-  </div>
+
+<div id="formMessage" style="display: none; margin-top: 20px; padding: 25px; background: rgba(255,255,255,0.95); border-radius: 12px; text-align: center; border-left: 4px solid #4CAF50;">
+  <p style="color: #2c5aa0; margin: 0; font-weight: 600; font-size: 1.1rem;">
+    ✅ Obrigado pelo interesse!
+  </p>
+  <p style="color: #666; margin: 10px 0 0 0;">
+    Nossa equipe entrará em contato em até 24h.
+  </p>
+</div>
 </div>
     </div>
   </div>
@@ -209,6 +229,16 @@
 </a>
     </div>
   </section>
+
+  <div class="whatsapp-float">
+    <a href="http://bit.ly/4g8KRby" 
+       target="_blank" 
+       class="whatsapp-link"
+       aria-label="Fale conosco pelo WhatsApp">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+</div>
+
 </main>
 
 <footer>
