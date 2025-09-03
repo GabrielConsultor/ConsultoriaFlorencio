@@ -51,7 +51,6 @@ const form = document.getElementById('contactForm');
 
       // Limpa os campos do formulário
       form.reset();
-      
       setTimeout(() => {
         message.style.display = "none";
       }, 3000);
