@@ -30,33 +30,57 @@ document.querySelectorAll('nav a').forEach(link => {
 });
 
 // FORMULÁRIO - NETLIFY FORMS
-document.getElementById('contactForm').addEventListener('submit', function(e) {
+document.getElementById('meu-formulario-visible').addEventListener('submit', async function(e) {
+  e.preventDefault();
   
-  // Mostra a mensagem de sucesso
-const form = document.getElementById('contactForm');
-  const message = document.getElementById('formMessage');
-
-  form.addEventListener('submit', function(e) {
-    e.preventDefault(); // impede o redirecionamento padrão
-
-    const formData = new FormData(form);
-
-    fetch("/", {
-      method: "POST",
-      body: formData
-    })
-    .then(() => {
-      // Mostra a mensagem
-      message.style.display = "block";
-
+  const form = e.target;
+  const formData = new FormData(form);
+  
+  try {
+    // Mostrar indicador de carregamento (opcional)
+    const submitBtn = form.querySelector('button[type="submit"]');
+    const originalText = submitBtn.textContent;
+    submitBtn.textContent = 'Enviando...';
+    submitBtn.disabled = true;
+    
+    const response = await fetch('/', {
+      method: 'POST',
+      body: formData,
+      headers: {
+        'Accept': 'application/json'
+      }
+    });
+    
+    if (response.ok) {
       // Limpa os campos do formulário
       form.reset();
+      
+      // Mostra mensagem de sucesso
+      const successMessage = document.createElement('div');
+      successMessage.textContent = 'Mensagem enviada com sucesso!';
+      successMessage.style.color = 'green';
+      successMessage.style.marginTop = '15px';
+      successMessage.style.padding = '10px';
+      successMessage.style.borderRadius = '5px';
+      successMessage.style.backgroundColor = '#f0fff0';
+      
+      // Insere a mensagem após o botão de submit
+      submitBtn.parentNode.insertBefore(successMessage, submitBtn.nextSibling);
+      
+      // Remove a mensagem após alguns segundos
       setTimeout(() => {
-        message.style.display = "none";
-      }, 3000);
-    })
-    .catch(() => {
-      alert("❌ Ocorreu um erro. Tente novamente.");
-    });
-  });
+        successMessage.remove();
+      }, 5000);
+    } else {
+      alert('Erro ao enviar mensagem. Tente novamente.');
+    }
+  } catch (error) {
+    alert('Erro de conexão. Tente novamente.');
+  } finally {
+    // Restaurar botão (se você adicionou o indicador de carregamento)
+    if (submitBtn && originalText) {
+      submitBtn.textContent = originalText;
+      submitBtn.disabled = false;
+    }
+  }
 });
