@@ -39,7 +39,7 @@
     background-color: var(--background);
     box-shadow: var(--shadow);
     position: sticky;
-    top: 2px;
+    top: 0px;
     z-index: 100;
     padding: 0px 0;
   }
@@ -560,6 +560,7 @@
     font-size: 0.9rem;
     color: var(--text-light);
   }
+
   
   /* Responsividade */
   @media (max-width: 768px) {
