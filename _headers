@@ -1,19 +1,13 @@
-/*
-
-  # Impede carregamento do site dentro de iframes (clickjacking)
-  X-Frame-Options: DENY
-
-  # Ativa proteção extra contra XSS no navegador
-  X-XSS-Protection: 1; mode=block
-
-  # Impede detecção automática de MIME
-  X-Content-Type-Options: nosniff
-
-  # Política de segurança de conteúdo
-  Content-Security-Policy: default-src 'self'; script-src 'self' https://apis.google.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; img-src 'self' data: https://fonts.gstatic.com https://*.whatsapp.net https://*.whatsapp.com; font-src 'self' https://fonts.gstatic.com; connect-src 'self' https://api.whatsapp.com https://forms.netlify.com; frame-ancestors 'none'; form-action 'self' https://forms.netlify.com; upgrade-insecure-requests;
-
-  # Evita que links externos manipulem sua aba
-  Referrer-Policy: no-referrer-when-downgrade
-
-  # Força uso de HTTPS sempre
-  Strict-Transport-Security: max-age=31536000; includeSubDomains; preload
+# Segurança - Headers Otimizados
+X-Frame-Options: DENY
+X-XSS-Protection: 1; mode=block
+X-Content-Type-Options: nosniff
+Content-Security-Policy: default-src 'self'; script-src 'self' https://apis.google.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; img-src 'self' data: https://fonts.gstatic.com https://*.whatsapp.net https://*.whatsapp.com; font-src 'self' https://fonts.gstatic.com; connect-src 'self' https://api.whatsapp.com https://forms.netlify.com; frame-ancestors 'none'; form-action 'self' https://forms.netlify.com; upgrade-insecure-requests; base-uri 'self'
+Referrer-Policy: strict-origin-when-cross-origin
+Strict-Transport-Security: max-age=31536000; includeSubDomains; preload
+Permissions-Policy: geolocation=(), camera=(), microphone=(), interest-cohort=()
+X-Content-Type-Options: nosniff
+Expect-CT: max-age=86400, enforce
+X-Permitted-Cross-Domain-Policies: none
+Access-Control-Allow-Origin: https://seusite.com
+Feature-Policy: geolocation 'none'; microphone 'none'; camera 'none'
