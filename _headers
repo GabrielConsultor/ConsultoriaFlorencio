@@ -10,16 +10,7 @@
   X-Content-Type-Options: nosniff
 
   # Política de segurança de conteúdo
-  Content-Security-Policy: 
-    default-src 'self'; 
-    script-src 'self' https://apis.google.com; 
-    style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; 
-    img-src 'self' data: https://fonts.gstatic.com https://*.whatsapp.net https://*.whatsapp.com; 
-    font-src 'self' https://fonts.gstatic.com; 
-    connect-src 'self' https://api.whatsapp.com https://forms.netlify.com; 
-    frame-ancestors 'none'; 
-    form-action 'self' https://forms.netlify.com; 
-    upgrade-insecure-requests;
+  Content-Security-Policy: default-src 'self'; script-src 'self' https://apis.google.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; img-src 'self' data: https://fonts.gstatic.com https://*.whatsapp.net https://*.whatsapp.com; font-src 'self' https://fonts.gstatic.com; connect-src 'self' https://api.whatsapp.com https://forms.netlify.com; frame-ancestors 'none'; form-action 'self' https://forms.netlify.com; upgrade-insecure-requests;
 
   # Evita que links externos manipulem sua aba
   Referrer-Policy: no-referrer-when-downgrade
