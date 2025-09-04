@@ -7,11 +7,11 @@
   # Impede que o navegador interprete arquivos com tipos MIME incorretos
   X-Content-Type-Options: nosniff
 
-  # Força o uso de HTTPS sempre, protegendo contra downgrade de protocolo
-  Strict-Transport-Security: max-age=31536000; includeSubDomains; preload
-
   # Ativa proteção extra contra XSS no navegador
   X-XSS-Protection: 1; mode=block
+
+  # Força o uso de HTTPS sempre
+  Strict-Transport-Security: max-age=31536000; includeSubDomains; preload
 
   # Controla quais informações de referrer são passadas, melhorando a privacidade
   Referrer-Policy: no-referrer-when-downgrade
@@ -19,14 +19,16 @@
   # Permite ou nega o uso de APIs e funcionalidades do navegador
   Permissions-Policy: geolocation=(), microphone=(), camera=()
 
-  # Ajuda a prevenir o uso de recursos de forma não autorizada por outros sites
-  Cross-Origin-Resource-Policy: same-origin
+  # Exige transparência de certificados, protegendo contra certificados falsos
+  Expect-CT: enforce, max-age=86400
 
-  # Protege contra o roubo de cookies e dados de popups maliciosos
+  # Evita que outros domínios leiam seu site ou recursos por meio de tecnologias como Flash
+  X-Permitted-Cross-Domain-Policies: none
+
+  # Impede que recursos de diferentes origens se comuniquem de forma perigosa
   Cross-Origin-Opener-Policy: same-origin
-
-  # Impede que o site seja incorporado em páginas de outros sites
   Cross-Origin-Embedder-Policy: require-corp
+  Cross-Origin-Resource-Policy: same-origin
 
   # Política de segurança de conteúdo
   Content-Security-Policy: default-src 'self'; script-src 'self' https://apis.google.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; img-src 'self' data: https://fonts.gstatic.com https://*.whatsapp.net https://*.whatsapp.com; font-src 'self' https://fonts.gstatic.com; connect-src 'self' https://api.whatsapp.com https://forms.netlify.com; frame-ancestors 'none'; form-action 'self' https://forms.netlify.com; upgrade-insecure-requests;
