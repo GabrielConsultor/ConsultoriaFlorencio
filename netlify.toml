@@ -1,0 +1,15 @@
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "DENY"
+    X-Content-Type-Options = "nosniff"
+    X-XSS-Protection = "1; mode=block"
+    Strict-Transport-Security = "max-age=31536000; includeSubDomains; preload"
+    Referrer-Policy = "no-referrer-when-downgrade"
+    Permissions-Policy = "geolocation=(), microphone=(), camera=()"
+    Expect-CT = "enforce, max-age=86400"
+    X-Permitted-Cross-Domain-Policies = "none"
+    Cross-Origin-Opener-Policy = "same-origin"
+    Cross-Origin-Embedder-Policy = "require-corp"
+    Cross-Origin-Resource-Policy = "same-origin"
+    Content-Security-Policy = "default-src 'self'; script-src 'self' https://apis.google.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; img-src 'self' data: https://fonts.gstatic.com https://*.whatsapp.net https://*.whatsapp.com; font-src 'self' https://fonts.gstatic.com; connect-src 'self' https://api.whatsapp.com https://forms.netlify.com; frame-ancestors 'none'; form-action 'self' https://forms.netlify.com; upgrade-insecure-requests;"
