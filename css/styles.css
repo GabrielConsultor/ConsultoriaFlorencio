@@ -655,7 +655,9 @@
         font-size: 28px;
     }
 }
-
+html {
+  scroll-behavior: smooth;
+}
 .menu-toggle {
   display: none; 
   cursor: pointer;

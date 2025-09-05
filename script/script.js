@@ -1,76 +1,85 @@
-document.getElementById('menu-toggle').addEventListener('click', function() {
-  const nav = document.getElementById('navbar');
-  nav.classList.toggle('show');
-});
+document.addEventListener('DOMContentLoaded', function() {
 
-document.querySelectorAll('nav a').forEach(link => {
-  link.addEventListener('click', () => {
-    document.getElementById('navbar').classList.remove('show');
-  });
-}); 
+  const menuToggle = document.getElementById('menu-toggle');
+  const navbar = document.getElementById('navbar');
 
-document.addEventListener('click', (e) => {
-  if (!navbar.contains(e.target) && !menuToggle.contains(e.target) && navbar.classList.contains('show')) {
-    navbar.classList.remove('show');
+  if (menuToggle && navbar) {
+    menuToggle.addEventListener('click', function(e) {
+      e.stopPropagation();
+      navbar.classList.toggle('show');
+    });
   }
-});
 
-menuToggle.addEventListener('click', (e) => {
-  e.stopPropagation();
-  navbar.classList.toggle('show');
-});
-
-document.querySelectorAll('nav a').forEach(link => {
-  link.addEventListener('click', () => {
-    navbar.classList.remove('show');
-  });
-});
-
-document.getElementById('meu-formulario-visible').addEventListener('submit', async function(e) {
-  e.preventDefault();
-  
-  const form = e.target;
-  const formData = new FormData(form);
-  
-  try {
-    const submitBtn = form.querySelector('button[type="submit"]');
-    const originalText = submitBtn.textContent;
-    submitBtn.textContent = 'Enviando...';
-    submitBtn.disabled = true;
-    
-    const response = await fetch('/', {
-      method: 'POST',
-      body: formData,
-      headers: {
-        'Accept': 'application/json'
+  const navLinks = document.querySelectorAll('nav a');
+  navLinks.forEach(link => {
+    link.addEventListener('click', () => {
+      if (navbar.classList.contains('show')) {
+        navbar.classList.remove('show');
       }
     });
-    
-    if (response.ok) {
-      form.reset();
-      
-      const successMessage = document.createElement('div');
-      successMessage.textContent = 'Mensagem enviada com sucesso!';
-      successMessage.style.color = 'green';
-      successMessage.style.marginTop = '15px';
-      successMessage.style.padding = '10px';
-      successMessage.style.borderRadius = '5px';
-      successMessage.style.backgroundColor = '#f0fff0';
+  });
 
-      submitBtn.parentNode.insertBefore(successMessage, submitBtn.nextSibling);
+  document.addEventListener('click', function(e) {
+    if (navbar && menuToggle && navbar.classList.contains('show')) {
+      if (!navbar.contains(e.target) && !menuToggle.contains(e.target)) {
+        navbar.classList.remove('show');
+      }
+    }
+  });
 
-      setTimeout(() => {
-        successMessage.remove();
-      }, 5000);
-    } else {
-      alert('Erro ao enviar mensagem. Tente novamente.');
-    }
-  } catch (error) {
-    alert('Erro de conexão. Tente novamente.');
-  } finally {
-    if (submitBtn && originalText) {
-      submitBtn.textContent = originalText;
-      submitBtn.disabled = false;
-    }
+
+  const form = document.getElementById('meu-formulario-visible');
+
+  if (form) {
+    form.addEventListener('submit', async function(e) {
+      e.preventDefault(); 
+
+      const formData = new FormData(form);
+      const submitBtn = form.querySelector('button[type="submit"]');
+      const originalText = submitBtn.textContent;
+
+      try {
+        submitBtn.textContent = 'Enviando...';
+        submitBtn.disabled = true;
+
+        const response = await fetch('/', {
+          method: 'POST',
+          body: formData,
+          headers: {
+            'Accept': 'application/json'
+          }
+        });
+
+        if (response.ok) {
+          gtag('event', 'conversion', {
+            'send_to': 'AW-17529493275/hWlTCL7OwpQbEJuu26ZB',
+            'value': 3.0,
+            'currency': 'BRL'
+          });
+          console.log('Evento de conversão enviado ao Google Ads.');
+
+
+          const successMessage = document.createElement('div');
+          successMessage.textContent = 'Mensagem enviada com sucesso!';
+          successMessage.className = 'form-success-message'; 
+          form.parentNode.insertBefore(successMessage, form.nextSibling);
+
+          form.reset();
+          setTimeout(() => {
+            successMessage.remove();
+          }, 5000);
+
+        } else {
+          alert('Erro ao enviar mensagem. Tente novamente.');
+        }
+      } catch (error) {
+        console.error('Erro de conexão:', error);
+        alert('Erro de conexão. Tente novamente.');
+      } finally {
+        submitBtn.textContent = originalText;
+        submitBtn.disabled = false;
+      }
+    });
   }
+
 });
