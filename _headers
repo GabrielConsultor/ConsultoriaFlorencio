@@ -25,10 +25,10 @@
   # Evita que outros domínios leiam seu site ou recursos por meio de tecnologias como Flash
   X-Permitted-Cross-Domain-Policies: none
 
-  # Impede que recursos de diferentes origens se comuniquem de forma perigosa
-  Cross-Origin-Opener-Policy: same-origin
-  Cross-Origin-Embedder-Policy: require-corp
-  Cross-Origin-Resource-Policy: same-origin
+  # AS 3 LINHAS ABAIXO FORAM COMENTADAS PARA PERMITIR SCRIPTS DE TERCEIROS
+  # Cross-Origin-Opener-Policy: same-origin
+  # Cross-Origin-Embedder-Policy: require-corp
+  # Cross-Origin-Resource-Policy: same-origin
 
 # Política de Segurança de Conteúdo
   Content-Security-Policy: \
@@ -41,4 +41,4 @@
     frame-src 'self' https://www.googletagmanager.com; \
     frame-ancestors 'none'; \
     form-action 'self' https://forms.netlify.com; \
-    upgrade-insecure-requests;
+    upgrade-in-secure-requests;
