@@ -1,28 +1,18 @@
 /*
-  # Configuração de cabeçalhos de segurança
-  
-  # Impede o carregamento do site dentro de iframes (clickjacking)
   X-Frame-Options: DENY
 
-  # Impede que o navegador interprete arquivos com tipos MIME incorretos
   X-Content-Type-Options: nosniff
 
-  # Ativa proteção extra contra XSS no navegador
   X-XSS-Protection: 1; mode=block
 
-  # Força o uso de HTTPS sempre
   Strict-Transport-Security: max-age=31536000; includeSubDomains; preload
 
-  # Controla quais informações de referrer são passadas, melhorando a privacidade
   Referrer-Policy: no-referrer-when-downgrade
 
-  # Permite ou nega o uso de APIs e funcionalidades do navegador
   Permissions-Policy: geolocation=(), microphone=(), camera=()
 
-  # Exige transparência de certificados, protegendo contra certificados falsos
   Expect-CT: enforce, max-age=86400
 
-  # Evita que outros domínios leiam seu site ou recursos por meio de tecnologias como Flash
   X-Permitted-Cross-Domain-Policies: none
 
   # AS 3 LINHAS ABAIXO FORAM COMENTADAS PARA PERMITIR SCRIPTS DE TERCEIROS
@@ -35,10 +25,10 @@
     default-src 'self'; \
     script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com; \
     style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com https://tagmanager.google.com; \
-    img-src 'self' data: https://fonts.gstatic.com https://*.whatsapp.net https://*.whatsapp.com https://www.google-analytics.com https://www.google.com; \
+    img-src 'self' data: https://fonts.gstatic.com https://*.whatsapp.net https://*.whatsapp.com https://www.google-analytics.com https://www.google.com https://www.googletagmanager.com https://stats.g.doubleclick.net; \
     font-src 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com; \
-    connect-src 'self' https://api.whatsapp.com https://forms.netlify.com https://www.google-analytics.com; \
+    connect-src 'self' https://api.whatsapp.com https://forms.netlify.com https://www.google-analytics.com https://stats.g.doubleclick.net; \
     frame-src 'self' https://www.googletagmanager.com; \
     frame-ancestors 'none'; \
     form-action 'self' https://forms.netlify.com; \
-    upgrade-in-secure-requests;
+    upgrade-insecure-requests;
