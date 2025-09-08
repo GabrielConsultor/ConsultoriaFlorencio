@@ -33,6 +33,8 @@ document.addEventListener('DOMContentLoaded', function() {
       e.preventDefault();
 
       const formData = new FormData(form);
+      const body = new URLSearchParams(formData).toString();
+      
       const submitBtn = form.querySelector('button[type="submit"]');
       const originalText = submitBtn.textContent;
 
@@ -42,10 +44,10 @@ document.addEventListener('DOMContentLoaded', function() {
 
         const response = await fetch('/', {
           method: 'POST',
-          body: formData,
-          headers: {
-            'Accept': 'application/json'
-          }
+          headers: { 
+            'Content-Type': 'application/x-www-form-urlencoded'
+          },
+          body: body 
         });
 
         if (response.ok) {
@@ -56,13 +58,12 @@ document.addEventListener('DOMContentLoaded', function() {
           });
           
           gtag('event', 'form_submission', {
-             'form_name': 'contact' 
+             'form_name': 'contact'
           });
 
           const formMessage = document.getElementById('formMessage');
           if (formMessage) {
-            formMessage.style.display = 'block'; 
-            
+            formMessage.style.display = 'block';
             setTimeout(() => {
               formMessage.style.display = 'none';
             }, 5000);
@@ -82,4 +83,5 @@ document.addEventListener('DOMContentLoaded', function() {
       }
     });
   }
+  
 });
