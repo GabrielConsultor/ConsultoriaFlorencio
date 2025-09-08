@@ -1,5 +1,4 @@
 document.addEventListener('DOMContentLoaded', function() {
-
   const menuToggle = document.getElementById('menu-toggle');
   const navbar = document.getElementById('navbar');
 
@@ -48,7 +47,30 @@ document.addEventListener('DOMContentLoaded', function() {
         });
 
         if (response.ok) {
-          window.location.href = '/obrigado.html';
+          // 🔥 ADICIONE ESTE CÓDIGO AQUI (ANTES DO REDIRECIONAMENTO)
+          // Disparar eventos de conversão do Google Ads
+          if (typeof gtag !== 'undefined') {
+            gtag('event', 'conversion', {
+              'send_to': 'AW-17529493275/hWlTCL7OwpQbEJuu26ZB',
+              'value': 3.0,
+              'currency': 'BRL'
+            });
+            
+            gtag('event', 'form_submission', {
+              'form_name': 'contact'
+            });
+            
+            console.log('✅ Conversão do Google Ads registrada com sucesso!');
+          } else {
+            console.log('⚠️ Google Ads tag não encontrada, mas formulário enviado');
+          }
+          
+          // Pequeno delay para garantir o rastreamento antes do redirecionamento
+          setTimeout(function() {
+            window.location.href = '/obrigado.html';
+          }, 500);
+          // 🔥 FIM DO CÓDIGO ADICIONADO
+          
         } else {
           alert('Erro ao enviar mensagem. Tente novamente.');
         }
