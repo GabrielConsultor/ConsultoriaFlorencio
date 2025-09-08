@@ -15,12 +15,12 @@
 
   X-Permitted-Cross-Domain-Policies: none
 
-  # AS 3 LINHAS ABAIXO FORAM COMENTADAS PARA PERMITIR SCRIPTS DE TERCEIROS
+  # As 3 linhas abaixo foram comentadas para permitir scripts de terceiros (Google, etc)
   # Cross-Origin-Opener-Policy: same-origin
   # Cross-Origin-Embedder-Policy: require-corp
   # Cross-Origin-Resource-Policy: same-origin
 
-# Política de Segurança de Conteúdo
+  # Política de Segurança de Conteúdo 
   Content-Security-Policy: \
     default-src 'self'; \
     script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com; \
