@@ -1,5 +1,4 @@
 document.addEventListener('DOMContentLoaded', function() {
-
   const menuToggle = document.getElementById('menu-toggle');
   const navbar = document.getElementById('navbar');
 
@@ -27,8 +26,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   });
 
-
-  const form = document.getElementById('meu-formulario-visible');
+  const form = document.getElementById('contactForm');
 
   if (form) {
     form.addEventListener('submit', async function(e) {
@@ -56,19 +54,20 @@ document.addEventListener('DOMContentLoaded', function() {
             'value': 3.0,
             'currency': 'BRL'
           });
-          console.log('Evento de conversão enviado ao Google Ads.');
+          
+          gtag('event', 'form_submission', {
+            'event_category': 'contact',
+            'event_label': 'contact_form'
+          });
 
-
-          const successMessage = document.createElement('div');
-          successMessage.textContent = 'Mensagem enviada com sucesso!';
-          successMessage.className = 'form-success-message'; 
-          form.parentNode.insertBefore(successMessage, form.nextSibling);
+          const formMessage = document.getElementById('formMessage');
+          if (formMessage) {
+            formMessage.style.display = 'block';
+          }
 
           form.reset();
-          setTimeout(() => {
-            successMessage.remove();
-          }, 5000);
-
+          
+          
         } else {
           alert('Erro ao enviar mensagem. Tente novamente.');
         }
@@ -81,5 +80,4 @@ document.addEventListener('DOMContentLoaded', function() {
       }
     });
   }
-
 });
