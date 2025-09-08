@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', function() {
- const menuToggle = document.getElementById('menu-toggle');
+  const menuToggle = document.getElementById('menu-toggle');
   const navbar = document.getElementById('navbar');
 
   if (menuToggle && navbar) {
@@ -51,25 +51,22 @@ document.addEventListener('DOMContentLoaded', function() {
         });
 
         if (response.ok) {
-          gtag('event', 'conversion', {
-            'send_to': 'AW-17529493275/hWlTCL7OwpQbEJuu26ZB',
-            'value': 3.0,
-            'currency': 'BRL'
-          });
-          
-          gtag('event', 'form_submission', {
-             'form_name': 'contact'
-          });
-
-          const formMessage = document.getElementById('formMessage');
-          if (formMessage) {
-            formMessage.style.display = 'block';
-            setTimeout(() => {
-              formMessage.style.display = 'none';
-            }, 5000);
+          // Disparar eventos de conversão antes do redirecionamento
+          if (typeof gtag !== 'undefined') {
+            gtag('event', 'conversion', {
+              'send_to': 'AW-17529493275/hWlTCL7OwpQbEJuu26ZB',
+              'value': 3.0,
+              'currency': 'BRL'
+            });
+            
+            gtag('event', 'form_submission', {
+              'form_name': 'contact'
+            });
           }
-
-          form.reset();
+          
+          // Redirecionar para página de agradecimento - isso para a execução do código atual
+          window.location.href = '/obrigado.html';
+          return; // Importante: para a execução aqui
           
         } else {
           alert('Erro ao enviar mensagem. Tente novamente.');
@@ -83,5 +80,4 @@ document.addEventListener('DOMContentLoaded', function() {
       }
     });
   }
-  
 });
