@@ -1,4 +1,6 @@
+// obrigado.js
 document.addEventListener('DOMContentLoaded', function() {
+    // Disparar a conversão do Google Ads quando a página carregar
     if (typeof gtag !== 'undefined') {
         gtag('event', 'conversion', {
             'send_to': 'AW-17529493275/hWlTCL7OwpQbEJuu26ZB',
@@ -11,6 +13,7 @@ document.addEventListener('DOMContentLoaded', function() {
         console.log('Google Ads tag não encontrada.');
     }
 
+    // Animação de entrada dos elementos
     const animateElements = function() {
         const elements = document.querySelectorAll('.thank-you-content > *');
         elements.forEach((element, index) => {
@@ -21,6 +24,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     };
 
+    // Configurar estado inicial para animação
     const contentElements = document.querySelectorAll('.thank-you-content > *');
     contentElements.forEach(element => {
         element.style.opacity = '0';
@@ -28,5 +32,6 @@ document.addEventListener('DOMContentLoaded', function() {
         element.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
     });
 
+    // Iniciar animação após um pequeno delay
     setTimeout(animateElements, 300);
 });
