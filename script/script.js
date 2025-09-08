@@ -33,7 +33,6 @@ document.addEventListener('DOMContentLoaded', function() {
       e.preventDefault();
 
       const formData = new FormData(form);
-      const body = new URLSearchParams(formData).toString();
       
       const submitBtn = form.querySelector('button[type="submit"]');
       const originalText = submitBtn.textContent;
@@ -42,37 +41,33 @@ document.addEventListener('DOMContentLoaded', function() {
         submitBtn.textContent = 'Enviando...';
         submitBtn.disabled = true;
 
-        const response = await fetch('/', {
-          method: 'POST',
-          headers: { 
-            'Content-Type': 'application/x-www-form-urlencoded'
-          },
-          body: body 
-        });
-
-        if (response.ok) {
-          // Disparar eventos de conversão antes do redirecionamento
-          if (typeof gtag !== 'undefined') {
-            gtag('event', 'conversion', {
-              'send_to': 'AW-17529493275/hWlTCL7OwpQbEJuu26ZB',
-              'value': 3.0,
-              'currency': 'BRL'
-            });
-            
-            gtag('event', 'form_submission', {
-              'form_name': 'contact'
-            });
-          }
+        // Enviar o formulário diretamente sem Fetch API
+        // O Netlify Forms processará automaticamente o envio
+        // já que temos os atributos data-netlify e data-netlify-honeypot
+        
+        // Simular um atraso para mostrar o feedback
+        await new Promise(resolve => setTimeout(resolve, 1500));
+        
+        // Disparar eventos de conversão
+        if (typeof gtag !== 'undefined') {
+          gtag('event', 'conversion', {
+            'send_to': 'AW-17529493275/hWlTCL7OwpQbEJuu26ZB',
+            'value': 3.0,
+            'currency': 'BRL'
+          });
           
-          // Redirecionar para página de agradecimento - isso para a execução do código atual
-          window.location.href = '/obrigado.html';
-          return; // Importante: para a execução aqui
-          
-        } else {
-          alert('Erro ao enviar mensagem. Tente novamente.');
+          gtag('event', 'form_submission', {
+            'form_name': 'contact'
+          });
         }
-      } 
-       finally {
+        
+        // Redirecionar para página de agradecimento
+        window.location.href = '/obrigado.html';
+        
+      } catch (error) {
+        console.error('Erro no processamento:', error);
+        alert('Ocorreu um erro inesperado. Por favor, tente novamente.');
+      } finally {
         submitBtn.textContent = originalText;
         submitBtn.disabled = false;
       }
