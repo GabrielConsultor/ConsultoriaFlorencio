@@ -1,4 +1,5 @@
 document.addEventListener('DOMContentLoaded', function() {
+
   const menuToggle = document.getElementById('menu-toggle');
   const navbar = document.getElementById('navbar');
 
@@ -32,8 +33,7 @@ document.addEventListener('DOMContentLoaded', function() {
     form.addEventListener('submit', async function(e) {
       e.preventDefault();
 
-      const formData = new FormData(form);
-      
+      const body = new URLSearchParams(new FormData(form)).toString();
       const submitBtn = form.querySelector('button[type="submit"]');
       const originalText = submitBtn.textContent;
 
@@ -41,32 +41,20 @@ document.addEventListener('DOMContentLoaded', function() {
         submitBtn.textContent = 'Enviando...';
         submitBtn.disabled = true;
 
-        // Enviar o formulário diretamente sem Fetch API
-        // O Netlify Forms processará automaticamente o envio
-        // já que temos os atributos data-netlify e data-netlify-honeypot
-        
-        // Simular um atraso para mostrar o feedback
-        await new Promise(resolve => setTimeout(resolve, 1500));
-        
-        // Disparar eventos de conversão
-        if (typeof gtag !== 'undefined') {
-          gtag('event', 'conversion', {
-            'send_to': 'AW-17529493275/hWlTCL7OwpQbEJuu26ZB',
-            'value': 3.0,
-            'currency': 'BRL'
-          });
-          
-          gtag('event', 'form_submission', {
-            'form_name': 'contact'
-          });
+        const response = await fetch('/', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+          body: body
+        });
+
+        if (response.ok) {
+          window.location.href = '/obrigado.html';
+        } else {
+          alert('Erro ao enviar mensagem. Tente novamente.');
         }
-        
-        // Redirecionar para página de agradecimento
-        window.location.href = '/obrigado.html';
-        
       } catch (error) {
-        console.error('Erro no processamento:', error);
-        alert('Ocorreu um erro inesperado. Por favor, tente novamente.');
+        console.error('Erro de conexão:', error);
+        alert('Erro de conexão. Tente novamente.');
       } finally {
         submitBtn.textContent = originalText;
         submitBtn.disabled = false;
