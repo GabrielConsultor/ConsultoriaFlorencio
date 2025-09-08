@@ -71,10 +71,8 @@ document.addEventListener('DOMContentLoaded', function() {
         } else {
           alert('Erro ao enviar mensagem. Tente novamente.');
         }
-      } catch (error) {
-        console.error('Erro de conexão:', error);
-        alert('Erro de conexão. Tente novamente.');
-      } finally {
+      } 
+       finally {
         submitBtn.textContent = originalText;
         submitBtn.disabled = false;
       }
