@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', function() {
-  const menuToggle = document.getElementById('menu-toggle');
+ const menuToggle = document.getElementById('menu-toggle');
   const navbar = document.getElementById('navbar');
 
   if (menuToggle && navbar) {
@@ -30,7 +30,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
   if (form) {
     form.addEventListener('submit', async function(e) {
-      e.preventDefault(); 
+      e.preventDefault();
 
       const formData = new FormData(form);
       const submitBtn = form.querySelector('button[type="submit"]');
@@ -56,17 +56,19 @@ document.addEventListener('DOMContentLoaded', function() {
           });
           
           gtag('event', 'form_submission', {
-            'event_category': 'contact',
-            'event_label': 'contact_form'
+             'form_name': 'contact' 
           });
 
           const formMessage = document.getElementById('formMessage');
           if (formMessage) {
-            formMessage.style.display = 'block';
+            formMessage.style.display = 'block'; 
+            
+            setTimeout(() => {
+              formMessage.style.display = 'none';
+            }, 5000);
           }
 
           form.reset();
-          
           
         } else {
           alert('Erro ao enviar mensagem. Tente novamente.');
