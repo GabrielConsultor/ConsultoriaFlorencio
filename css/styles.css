@@ -378,14 +378,8 @@
     max-height: 60px;
     width: auto;
     height: auto;
-    filter: grayscale(100%);
-    opacity: 0.8;
-    transition: all 0.3s ease;
-  }
-
-  .operadora-item:hover .operadora-logo {
-    filter: grayscale(0%);
     opacity: 1;
+    transition: all 0.3s ease;
   }
   
   .planos {
