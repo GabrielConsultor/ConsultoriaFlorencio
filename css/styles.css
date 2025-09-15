@@ -49,6 +49,7 @@
   align-items: center;
   width: 100%;
   padding: 0; 
+  height: 90px;
 }
   
 .logo {
@@ -965,4 +966,25 @@ html {
     margin-top: 10px;
     font-size: 0.85rem;
     opacity: 0.8;
+}
+footer {
+    padding: 30px 20px; 
+    font-size: 0.8rem;  
+    line-height: 1.6;   
+}
+
+.footer-content {
+    margin-bottom: 15px;
+}
+
+.footer-content a {
+    color: var(--text-light); 
+    text-decoration: none;    
+    font-weight: 500;
+    transition: color 0.3s ease, border-bottom-color 0.3s ease; 
+}
+
+.footer-content a:hover {
+    color: var(--primary); 
+    border-bottom-color: var(--primary); 
 }
